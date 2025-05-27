@@ -19,8 +19,15 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+        # Tenta ajudar o cache a achar o pom, mas o principal é nos passos abaixo
+        # cache-dependency-path: '**/pom.xml' 
+
     - name: Build with Maven
+      # Executa o comando DENTRO da subpasta
       run: mvn -B package --file pom.xml
+      working-directory: atividade-sd # <--- ADICIONE ESTA LINHA
 
     - name: Test with Maven
+      # Executa o comando DENTRO da subpasta
       run: mvn test --file pom.xml
+      working-directory: atividade-sd # <--- ADICIONE ESTA LINHA
